@@ -25,15 +25,15 @@ $EXTMIN
  10
 0
  20
--3e-006
+-1.05935944065e-006
  30
 0
   9
 $EXTMAX
  10
-283.474304
+100.100393374696
  20
-173.480312
+61.25933542803583
  30
 0
   9
@@ -1115,9 +1115,9 @@ AcDbViewportTableRecord
  21
 1
  12
-54.70946357887055
+45.96881942255272
  22
-31.14898124503727
+27.94904220891205
  13
 0
  23
@@ -1143,7 +1143,7 @@ AcDbViewportTableRecord
  37
 0
  40
-64.24929078152698
+26.1544194986556
  41
 1.784026996625422
  42
@@ -2819,28 +2819,6 @@ ByLayer
 100
 AcDbCircle
  10
-67.09796179191582
- 20
-44.11237684912293
- 40
-2.557413750465706
-  0
-CIRCLE
-  5
-55
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbCircle
- 10
 86.65937427101834
  20
 43.65609484764337
@@ -2849,7 +2827,7 @@ AcDbCircle
   0
 CIRCLE
   5
-56
+55
 100
 AcDbEntity
   8
@@ -2871,7 +2849,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-57
+56
 100
 AcDbEntity
   8
@@ -2897,7 +2875,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-58
+57
 100
 AcDbEntity
   8
@@ -2923,7 +2901,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-59
+58
 100
 AcDbEntity
   8
@@ -2981,7 +2959,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-5A
+59
 100
 AcDbEntity
   8
@@ -3007,7 +2985,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-5B
+5A
 100
 AcDbEntity
   8
@@ -3033,7 +3011,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-5C
+5B
 100
 AcDbEntity
   8
@@ -3059,33 +3037,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-5D
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbPolyline
- 90
-    1
- 70
-    1
- 43
-0
- 10
-69.65537554238153
- 20
-44.11237684912293
-  0
-LWPOLYLINE
-  5
-5E
+5C
 100
 AcDbEntity
   8
@@ -3111,7 +3063,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-5F
+5D
 100
 AcDbEntity
   8
@@ -3137,7 +3089,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-60
+5E
 100
 AcDbEntity
   8
@@ -3163,7 +3115,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-61
+5F
 100
 AcDbEntity
   8
@@ -3569,7 +3521,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-62
+60
 100
 AcDbEntity
   8
@@ -3607,7 +3559,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-63
+61
 100
 AcDbEntity
   8
@@ -3633,7 +3585,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-64
+62
 100
 AcDbEntity
   8
@@ -3659,7 +3611,7 @@ AcDbPolyline
   0
 LINE
   5
-65
+63
 100
 AcDbEntity
   8
@@ -3683,7 +3635,7 @@ AcDbLine
   0
 LWPOLYLINE
   5
-66
+64
 100
 AcDbEntity
   8
@@ -4086,6 +4038,28 @@ AcDbPolyline
 92.47338571205522
  20
 8.787901055760091
+  0
+CIRCLE
+  5
+65
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbCircle
+ 10
+65.37133872442367
+ 20
+44.11237684912293
+ 40
+2.557413750465706
   0
 ENDSEC
   0
