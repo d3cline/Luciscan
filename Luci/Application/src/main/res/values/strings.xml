@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">Status:</string>
+    <string name="no_data">No data</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+    <string name="_450nm">450nm</string>
+    <string name="_650nm">650nm</string>
+    <string name="_600nm">600nm</string>
+    <string name="_500nm">500nm</string>
+    <string name="_550nm">550nm</string>
+    <string name="_570nm">570nm</string>
+
+
+    <string name="_610nm">610nm</string>
+    <string name="_680nm">680nm</string>
+    <string name="_730nm">730nm</string>
+    <string name="_760nm">760nm</string>
+    <string name="_810nm">810nm</string>
+    <string name="_860nm">860nm</string>
+
+    <string name="facebook_app_id">690720967645194</string>
+    <string name="fb_login_protocol_scheme">fb690720967645194</string>
+    <string name="preference_file_key">com.objectsyndicate.luciscan.userToken</string>
+</resources>
