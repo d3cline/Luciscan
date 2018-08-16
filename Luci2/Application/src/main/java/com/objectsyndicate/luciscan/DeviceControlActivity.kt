@@ -41,8 +41,10 @@ import kotlin.concurrent.fixedRateTimer
 import android.util.Base64;
 import android.view.View
 import android.widget.*
+import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.data.CombinedData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -278,7 +280,6 @@ class DeviceControlActivity : Activity() {
                             Vv.text = String.format("%,.2f",VioletWatts) +" W/m²"
                             val Vm = findViewById<TextView>(R.id.violet_mol)
                             Vm.text = String.format("%,.2f",VioletMol)+" μMole/m²"
-
                         }
                         o[0] == "1" -> {
                             v500 = (100/90)*((o[1].toFloat()))
@@ -288,7 +289,6 @@ class DeviceControlActivity : Activity() {
                             Bv.text = String.format("%,.2f",BlueWatts) +" W/m²"
                             val Bm = findViewById<TextView>(R.id.blue_mol)
                             Bm.text = String.format("%,.2f",BlueMol)+" μMole/m²"
-
                         }
                         o[0] == "2" -> {
                             v550 = (100/90)*((o[1].toFloat()))
@@ -298,7 +298,6 @@ class DeviceControlActivity : Activity() {
                             Gv.text = String.format("%,.2f",GreenWatts) +" W/m²"
                             val Gm = findViewById<TextView>(R.id.green_mol)
                             Gm.text = String.format("%,.2f",GreenMol)+" μMole/m²"
-
                         }
                         o[0] == "3" -> {
                             v570 = (100/90)*((o[1].toFloat()))
@@ -308,7 +307,6 @@ class DeviceControlActivity : Activity() {
                             Yv.text = String.format("%,.2f",YellowWatts) +" W/m²"
                             val Ym = findViewById<TextView>(R.id.yellow_mol)
                             Ym.text = String.format("%,.2f",YellowMol)+" μMole/m²"
-
                         }
                         o[0] == "4" -> {
                             v600 = (100/90)*((o[1].toFloat()))
@@ -318,7 +316,6 @@ class DeviceControlActivity : Activity() {
                             Ov.text = String.format("%,.2f",OrangeWatts) +" W/m² "
                             val Om = findViewById<TextView>(R.id.orange_mol)
                             Om.text = String.format("%,.2f",OrangeMol)+" μMole/m²"
-
                         }
                         o[0] == "5" -> {
                             v650 = (100/90)*((o[1].toFloat()))
@@ -328,100 +325,96 @@ class DeviceControlActivity : Activity() {
                             Redv.text = String.format("%,.2f",RedWatts) +" W/m² "
                             val Redm = findViewById<TextView>(R.id.red_mol)
                             Redm.text = String.format("%,.2f",RedMol) + " μMole/m²"
-
                         }
-
                     }
 
                 val ppfdv = findViewById<TextView>(R.id.ppfd_mol)
                 ppfdv.text = String.format("%,.2f",(VioletMol+BlueMol+GreenMol+OrangeMol+RedMol)  ) + " μMole/m²"
 
-                    val LightChart = findViewById<LineChart>(R.id.light_chart)
-                    val dataSet = ArrayList<ILineDataSet>()
+                val LightChart = findViewById<CombinedChart>(R.id.light_chart)
+                val dataSet = ArrayList<ILineDataSet>()
+                val left = LightChart.axisLeft
+                left.textSize = 12f
+                left.axisMinimum = 0f
+                left.axisMaximum = 10f
 
-                    val left = LightChart.axisLeft
-                    left.textSize = 12f
-                    left.axisMinimum = 0f
-                    left.axisMaximum = 10f
+                if(v450 >= 10f || v500 >= 10f || v550 >= 10f || v570 >= 10f || v600 >= 10f || v650 >= 10f  ){
+                    left.axisMaximum = 30f
+                }
+                if(v450 >= 30f || v500 >= 30f || v550 >= 30f || v570 >= 30f || v600 >= 30f || v650 >= 30f   ){
+                    left.axisMaximum = 100f
+                }
+                if(v450 >= 100f || v500 >= 100f || v550 >= 100f || v570 >= 100f || v600 >= 100f || v650 >= 100f ){
+                    left.axisMaximum = 700f
+                }
 
-                    if(v450 >= 10f || v500 >= 10f || v550 >= 10f || v570 >= 10f || v600 >= 10f || v650 >= 10f  ){
-                        left.axisMaximum = 30f
-                    }
-                    if(v450 >= 30f || v500 >= 30f || v550 >= 30f || v570 >= 30f || v600 >= 30f || v650 >= 30f   ){
-                        left.axisMaximum = 100f
-                    }
-                    if(v450 >= 100f || v500 >= 100f || v550 >= 100f || v570 >= 100f || v600 >= 100f || v650 >= 100f ){
-                        left.axisMaximum = 700f
-                    }
+                LightChart.axisRight.setEnabled(false)
+                LightChart.setScaleEnabled(false)
+                LightChart.setTouchEnabled(false)
 
-                    LightChart.axisRight.setEnabled(false)
-                    LightChart.setScaleEnabled(false)
-                    LightChart.setTouchEnabled(false)
+                val description = Description()
+                description.setText("")
+                LightChart.setDescription(description)
 
-                    val description = Description()
-                    description.setText("")
-                    LightChart.setDescription(description)
+                val l = LightChart.getLegend()
+                l.setEnabled(false)
 
-                    val l = LightChart.getLegend()
-                    l.setEnabled(false)
+                val ChlA = ArrayList<Entry>()
+                ChlA.add(Entry(428.toFloat(), 1001.toFloat()))
+                ChlA.add(Entry(453.toFloat(), 1001.toFloat()))
+                ChlA.add(Entry(453.toFloat(), -1.toFloat()))
+                ChlA.add(Entry(642.toFloat(), -1.toFloat()))
+                ChlA.add(Entry(642.toFloat(), 1001.toFloat()))
+                ChlA.add(Entry(661.toFloat(), 1001.toFloat()))
+                val chlaArray: IntArray = intArrayOf(Color.argb(0,0,99,0),Color.argb(127,0,99,0))
+                val chlgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,chlaArray)
+                val chlaset = LineDataSet(ChlA, "Chlorophyll")
+                chlaset.setDrawFilled(true)
+                chlaset.setColor(Color.argb(0,0,99,0))
+                chlaset.fillDrawable = chlgrad
+                dataSet.add(chlaset)
 
-                    val ChlA = ArrayList<Entry>()
-                    ChlA.add(Entry(428.toFloat(), 1001.toFloat()))
-                    ChlA.add(Entry(453.toFloat(), 1001.toFloat()))
-                    ChlA.add(Entry(453.toFloat(), -1.toFloat()))
-                    ChlA.add(Entry(642.toFloat(), -1.toFloat()))
-                    ChlA.add(Entry(642.toFloat(), 1001.toFloat()))
-                    ChlA.add(Entry(661.toFloat(), 1001.toFloat()))
-                    val chlaArray: IntArray = intArrayOf(Color.argb(0,0,99,0),Color.argb(127,0,99,0))
-                    val chlgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,chlaArray)
-                    val chlaset = LineDataSet(ChlA, "Chlorophyll")
-                    chlaset.setDrawFilled(true)
-                    chlaset.setColor(Color.argb(0,0,99,0))
-                    chlaset.fillDrawable = chlgrad
-                    dataSet.add(chlaset)
+                val Carot = ArrayList<Entry>()
+                Carot.add(Entry(400.toFloat(), 1001.toFloat()))
+                Carot.add(Entry(500.toFloat(), 1001.toFloat()))
+                Carot.add(Entry(500.toFloat(), -1.toFloat()))
 
-                    val Carot = ArrayList<Entry>()
-                    Carot.add(Entry(400.toFloat(), 1001.toFloat()))
-                    Carot.add(Entry(500.toFloat(), 1001.toFloat()))
-                    Carot.add(Entry(500.toFloat(), -1.toFloat()))
+                val carotArray: IntArray = intArrayOf(Color.argb(0,255,102,0),Color.argb(127,255,102,0))
+                val carotgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,carotArray)
+                val carotset = LineDataSet(Carot, "Carotenoids")
 
-                    val carotArray: IntArray = intArrayOf(Color.argb(0,255,102,0),Color.argb(127,255,102,0))
-                    val carotgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,carotArray)
-                    val carotset = LineDataSet(Carot, "Carotenoids")
+                carotset.setDrawFilled(true)
+                carotset.setColor(Color.argb(0,255,102,0))
+                carotset.fillDrawable = carotgrad
+                dataSet.add(carotset)
 
-                    carotset.setDrawFilled(true)
-                    carotset.setColor(Color.argb(0,255,102,0))
-                    carotset.fillDrawable = carotgrad
-                    dataSet.add(carotset)
+                val yAxes = ArrayList<Entry>().apply {
+                    add(Entry(400F, -1F))
+                    add(Entry(450F, v450))
+                    add(Entry(500F, v500))
+                    add(Entry(550F, v550))
+                    add(Entry(570F, v570))
+                    add(Entry(600F, v600))
+                    add(Entry(650F, v650))
+                    add(Entry(700F, -1F))
+                }
 
+                val set1 = LineDataSet(yAxes, "Light Quality")
+                set1.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
+                set1.setDrawFilled(true)
 
-                    val yAxes = ArrayList<Entry>().apply {
-                        add(Entry(400F, -1F))
-                        add(Entry(450F, v450))
-                        add(Entry(500F, v500))
-                        add(Entry(550F, v550))
-                        add(Entry(570F, v570))
-                        add(Entry(600F, v600))
-                        add(Entry(650F, v650))
+                val rainArray: IntArray = intArrayOf(Color.MAGENTA, Color.argb(255,127,0,255), Color.BLUE, Color.GREEN, Color.YELLOW, Color.argb(255,255,170,0), Color.RED, Color.argb(255,170,0,0))
+                val rainbow = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,rainArray)
+                set1.fillDrawable = rainbow
+                set1.color = Color.argb(255,0,0,0)
 
-                        add(Entry(700F, -1F))
-                    }
+                dataSet.add(set1)
 
+                val cdata = CombinedData()
 
-                    val set1 = LineDataSet(yAxes, "Light Quality")
-                    set1.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
-                    set1.setDrawFilled(true)
-
-                    val rainArray: IntArray = intArrayOf(Color.MAGENTA, Color.argb(255,127,0,255), Color.BLUE, Color.GREEN, Color.YELLOW, Color.argb(255,255,170,0), Color.RED, Color.argb(255,170,0,0))
-                    val rainbow = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,rainArray)
-                    set1.fillDrawable = rainbow
-                    set1.color = Color.argb(255,0,0,0)
-
-                    dataSet.add(set1)
-                    LightChart.data = LineData(dataSet)
-                    LightChart.invalidate()
-                    progbar.visibility = View.INVISIBLE
-
+                LightChart.data = LineData(dataSet)
+                LightChart.invalidate()
+                progbar.visibility = View.INVISIBLE
 
             }catch(e: NullPointerException){
                 //println(e)
