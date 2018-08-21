@@ -76,7 +76,7 @@ class BluetoothLeService : Service() {
         override fun onCharacteristicRead(gatt: BluetoothGatt,
                                           characteristic: BluetoothGattCharacteristic,
                                           status: Int) {
-            println("AGGHH")
+            //println("AGGHH")
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
 
@@ -101,7 +101,7 @@ class BluetoothLeService : Service() {
             LUCI_LOW == characteristic.uuid -> {
 /////////////////////////////////////////////////////////////////////////////
                 val data = characteristic.value
-                println(String(data))
+                //println(String(data))
                 if (data != null && data.isNotEmpty()) {
                     val stringBuilder = StringBuilder(data.size)
                     for (byteChar in data)

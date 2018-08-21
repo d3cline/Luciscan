@@ -5,28 +5,25 @@
     build-mode="COLD"
     density="xhdpi"
     format="10"
-    ir-eligibility="R_CLASS_CHANGE"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.1.4"
-    timestamp="1534826895065"
+    timestamp="1534886398755"
     token="6684032540292483497"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="1120" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="419" />
+        duration="14" />
     <task
         name="verifier"
-        duration="81" />
+        duration="5" />
 
-    <artifact
-        location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
-        type="SPLIT" />
     <artifact
         location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_4.apk"
         type="SPLIT" />
@@ -36,16 +33,13 @@
 
     <build
         build-mode="FULL"
-        timestamp="1534823781649"
+        timestamp="1534882636820"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\instant-run-apk\debug\Application-debug.apk"
-            type="SPLIT_MAIN" />
-        <artifact
-            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_5.apk"
@@ -74,15 +68,24 @@
         <artifact
             location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
+        <artifact
+            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\instant-run-apk\debug\Application-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="R_CLASS_CHANGE"
-        timestamp="1534826895065"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1534885987766"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
+            location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\instant-run-apk\debug\Application-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1534886398755"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\d3\Documents\GitHub\Luciscan\Luci2\Application\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />

@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Tue Aug 21 15:25:39 MDT 2018
+0.baseType=DIRECTORY
+0.base=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\release\\0
+0.path=classes.dex
+0.set=DEX
+count=1

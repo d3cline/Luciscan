@@ -44,10 +44,7 @@ import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.CombinedData
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -131,7 +128,7 @@ class DeviceControlActivity : Activity() {
             val action = intent.action
             when (action) {
                 BluetoothLeService.ACTION_GATT_CONNECTED -> {
-                    println("CONNECT")
+                   // println("CONNECT")
                     mConnected = true
                     updateConnectionState(R.string.connected)
                     invalidateOptionsMenu()
@@ -150,7 +147,7 @@ class DeviceControlActivity : Activity() {
                     displayGattServices(mBluetoothLeService!!.supportedGattServices)
 
                 BluetoothLeService.ACTION_DATA_AVAILABLE -> {
-                    println("AVAILABE")
+                   // println("AVAILABE")
 
                     displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA))
                 }
@@ -192,11 +189,11 @@ class DeviceControlActivity : Activity() {
 
 
     override fun onResume() {
-        println("RESUME")
+        //println("RESUME")
         super.onResume()
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter())
         if (mBluetoothLeService != null) {
-            println("NULL")
+            //println("NULL")
             val result = mBluetoothLeService!!.connect(mDeviceAddress)
             Log.d(TAG, "Connect request result=" + result)
         }
@@ -268,7 +265,7 @@ class DeviceControlActivity : Activity() {
     val progbar = findViewById<ProgressBar>(R.id.progressBar)
     progbar.visibility = View.VISIBLE
         if (data != null) {
-            println(data)
+            //println(data)
             try {
                 val o = data.split(":")
                 //119.708/nm=Watt/Mol 119.708/500=1/x
@@ -359,7 +356,7 @@ class DeviceControlActivity : Activity() {
 
                 val description = Description()
                 description.setText("")
-                lightChart.setDescription(description)
+                lightChart.description = description
 
                 val ChlA = ArrayList<Entry>()
                 ChlA.add(Entry(428.toFloat(), 1001.toFloat()))
@@ -372,7 +369,7 @@ class DeviceControlActivity : Activity() {
                 val chlgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,chlaArray)
                 val chlaset = LineDataSet(ChlA, "Chlorophyll")
                 chlaset.setDrawFilled(true)
-                chlaset.setColor(Color.argb(0,0,99,0))
+                chlaset.color = Color.argb(0,0,99,0)
                 chlaset.fillDrawable = chlgrad
 
                 val dataSet = ArrayList<ILineDataSet>()
@@ -382,14 +379,14 @@ class DeviceControlActivity : Activity() {
                 val Carot = ArrayList<Entry>()
                 Carot.add(Entry(400.toFloat(), 1001.toFloat()))
                 Carot.add(Entry(500.toFloat(), 1001.toFloat()))
-                Carot.add(Entry(500.toFloat(), -1.toFloat()))
+                Carot.add(Entry(500.toFloat(), (-1).toFloat()))
 
                 val carotArray: IntArray = intArrayOf(Color.argb(0,255,102,0),Color.argb(127,255,102,0))
                 val carotgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,carotArray)
                 val carotset = LineDataSet(Carot, "Carotenoids")
 
                 carotset.setDrawFilled(true)
-                carotset.setColor(Color.argb(0,255,102,0))
+                carotset.color = Color.argb(0,255,102,0)
                 carotset.fillDrawable = carotgrad
                 dataSet.add(carotset)
 
@@ -404,8 +401,27 @@ class DeviceControlActivity : Activity() {
                     add(Entry(700F, -1F))
                 }
 
-                val set1 = LineDataSet(yAxes, "Light Quality")
-                set1.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
+                val barAxes = ArrayList<BarEntry>().apply {
+                    add(BarEntry(400F, -1F))
+                    add(BarEntry(450F, v450))
+                    add(BarEntry(500F, v500))
+                    add(BarEntry(550F, v550))
+                    add(BarEntry(570F, v570))
+                    add(BarEntry(600F, v600))
+                    add(BarEntry(650F, v650))
+                    add(BarEntry(700F, -1F))
+                }
+
+                val set1 = LineDataSet(yAxes, "Average")
+
+                val set2 = BarDataSet(barAxes, "40nm FWHM")
+
+                set2.color = Color.argb(97,155,155,155)
+
+                set1.setDrawValues(false)
+
+
+                set1.mode = LineDataSet.Mode.CUBIC_BEZIER
                 set1.setDrawFilled(true)
 
                 val rainArray: IntArray = intArrayOf(Color.MAGENTA, Color.argb(255,127,0,255), Color.BLUE, Color.GREEN, Color.YELLOW, Color.argb(255,255,170,0), Color.RED, Color.argb(255,170,0,0))
@@ -413,8 +429,7 @@ class DeviceControlActivity : Activity() {
                 set1.fillDrawable = rainbow
                 set1.color = Color.argb(255,0,0,0)
 
-
-                val DO = arrayOf(CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.LINE)
+                val DO = arrayOf(CombinedChart.DrawOrder.LINE, CombinedChart.DrawOrder.BAR)
                 lightChart.drawOrder = DO
 
                 val l = lightChart.legend
@@ -426,7 +441,13 @@ class DeviceControlActivity : Activity() {
                 val ldata = LineData()
                 ldata.addDataSet(set1)
 
+                val bdata = BarData()
+                bdata.barWidth = 40f
+                bdata.addDataSet(set2)
+
+
                 cdata.setData(ldata)
+                cdata.setData(bdata)
 
                 lightChart.data = cdata
                 lightChart.invalidate()
@@ -434,7 +455,7 @@ class DeviceControlActivity : Activity() {
                 progbar.visibility = View.INVISIBLE
 
             }catch(e: NullPointerException){
-                println(e)
+                //println(e)
             }
         }
     }
