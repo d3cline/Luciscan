@@ -76,10 +76,9 @@ class BluetoothLeService : Service() {
         override fun onCharacteristicRead(gatt: BluetoothGatt,
                                           characteristic: BluetoothGattCharacteristic,
                                           status: Int) {
+            println("AGGHH")
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
-
-
 
             }
         }
@@ -102,6 +101,7 @@ class BluetoothLeService : Service() {
             LUCI_LOW == characteristic.uuid -> {
 /////////////////////////////////////////////////////////////////////////////
                 val data = characteristic.value
+                println(String(data))
                 if (data != null && data.isNotEmpty()) {
                     val stringBuilder = StringBuilder(data.size)
                     for (byteChar in data)
@@ -221,14 +221,11 @@ class BluetoothLeService : Service() {
         }
         // We want to directly connect to the device, so we are setting the autoConnect
         // parameter to false.
-        mBluetoothGatt = device.connectGatt(this, true, mGattCallback)
+        mBluetoothGatt = device.connectGatt(this, false, mGattCallback)
         Log.d(TAG, "Trying to create a new connection.")
         mBluetoothDeviceAddress = address
         mConnectionState = STATE_CONNECTING
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mBluetoothGatt!!.requestConnectionPriority(BluetoothGatt.CONNECTION_PRIORITY_HIGH)
-        }
 
         return true
     }

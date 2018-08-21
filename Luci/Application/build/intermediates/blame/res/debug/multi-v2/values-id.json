@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Luci\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-id\\values-id.xml",
+            "outputFile": "C:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-id\\values-id.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\d3\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.28.0.aar\\c5b7d6fa3a5fb85faaa6102960c39bf5\\res\\values-id\\values-id.xml",
+                    "source": "C:\\Users\\d3\\.gradle\\caches\\transforms-1\\files-1.1\\facebook-common-4.28.0.aar\\7276060d6382f8d471985d17ab22ee19\\res\\values-id\\values-id.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

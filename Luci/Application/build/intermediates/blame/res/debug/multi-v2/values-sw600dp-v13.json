@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Luci\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+            "outputFile": "C:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Luci\\Application\\src\\main\\res\\values-sw600dp\\template-dimens.xml",
-                    "from": {
-                        "startLines": "20,21",
-                        "startColumns": "4,4",
-                        "startOffsets": "656,724",
-                        "endColumns": "67,67",
-                        "endOffsets": "719,787"
-                    },
-                    "to": {
-                        "startLines": "10,11",
-                        "startColumns": "4,4",
-                        "startOffsets": "611,679",
-                        "endColumns": "67,67",
-                        "endOffsets": "674,742"
-                    }
-                },
-                {
-                    "source": "C:\\Luci\\Application\\src\\main\\res\\values-sw600dp\\template-styles.xml",
+                    "source": "C:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci\\Application\\src\\main\\res\\values-sw600dp\\template-styles.xml",
                     "from": {
                         "startLines": "18",
                         "startColumns": "4",
@@ -40,7 +23,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\d3\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\42d2009f3fb5c81165cc259910d96439\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci\\Application\\src\\main\\res\\values-sw600dp\\template-dimens.xml",
+                    "from": {
+                        "startLines": "20,21",
+                        "startColumns": "4,4",
+                        "startOffsets": "656,724",
+                        "endColumns": "67,67",
+                        "endOffsets": "719,787"
+                    },
+                    "to": {
+                        "startLines": "10,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "611,679",
+                        "endColumns": "67,67",
+                        "endOffsets": "674,742"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\d3\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\b67adb2e59c4fc51770223c77fd136bc\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

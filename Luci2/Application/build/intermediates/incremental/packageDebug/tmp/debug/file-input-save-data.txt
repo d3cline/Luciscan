@@ -1,6 +1,6 @@
 #Internal package file, do not edit.
-#Wed Aug 15 12:17:45 MDT 2018
-2.base=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\11
+#Mon Aug 20 08:54:21 MDT 2018
+2.base=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\14
 5.set=DEX
 0.path=classes.dex
 2.baseType=DIRECTORY
@@ -22,6 +22,6 @@ count=6
 0.base=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\16
 0.baseType=DIRECTORY
 3.set=DEX
-1.base=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\14
+1.base=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\17
 4.baseType=DIRECTORY
 0.set=DEX

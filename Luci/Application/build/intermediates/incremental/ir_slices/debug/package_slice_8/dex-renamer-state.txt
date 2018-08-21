@@ -1,0 +1,4 @@
+#Sun Aug 19 21:04:32 MDT 2018
+base.0=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\8
+path.0=classes.dex
+renamed.0=classes.dex

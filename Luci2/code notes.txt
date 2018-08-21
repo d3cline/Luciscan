@@ -1,0 +1,86 @@
+
+                left.textSize = 12f
+                left.axisMinimum = 0f
+                left.axisMaximum = 10f
+
+                if(v450 >= 10f || v500 >= 10f || v550 >= 10f || v570 >= 10f || v600 >= 10f || v650 >= 10f  ){
+                    left.axisMaximum = 30f
+                }
+                if(v450 >= 30f || v500 >= 30f || v550 >= 30f || v570 >= 30f || v600 >= 30f || v650 >= 30f   ){
+                    left.axisMaximum = 100f
+                }
+                if(v450 >= 100f || v500 >= 100f || v550 >= 100f || v570 >= 100f || v600 >= 100f || v650 >= 100f ){
+                    left.axisMaximum = 700f
+                }
+
+                LightChart.axisRight.setEnabled(false)
+                LightChart.setScaleEnabled(false)
+                LightChart.setTouchEnabled(false)
+
+                val description = Description()
+                description.setText("")
+                LightChart.setDescription(description)
+
+                val l = LightChart.getLegend()
+                l.setEnabled(false)
+
+                val ChlA = ArrayList<Entry>()
+                ChlA.add(Entry(428.toFloat(), 1001.toFloat()))
+                ChlA.add(Entry(453.toFloat(), 1001.toFloat()))
+                ChlA.add(Entry(453.toFloat(), -1.toFloat()))
+                ChlA.add(Entry(642.toFloat(), -1.toFloat()))
+                ChlA.add(Entry(642.toFloat(), 1001.toFloat()))
+                ChlA.add(Entry(661.toFloat(), 1001.toFloat()))
+                val chlaArray: IntArray = intArrayOf(Color.argb(0,0,99,0),Color.argb(127,0,99,0))
+                val chlgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,chlaArray)
+                val chlaset = LineDataSet(ChlA, "Chlorophyll")
+                chlaset.setDrawFilled(true)
+                chlaset.setColor(Color.argb(0,0,99,0))
+                chlaset.fillDrawable = chlgrad
+                dataSet.add(chlaset)
+
+                val Carot = ArrayList<Entry>()
+                Carot.add(Entry(400.toFloat(), 1001.toFloat()))
+                Carot.add(Entry(500.toFloat(), 1001.toFloat()))
+                Carot.add(Entry(500.toFloat(), -1.toFloat()))
+
+                val carotArray: IntArray = intArrayOf(Color.argb(0,255,102,0),Color.argb(127,255,102,0))
+                val carotgrad = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,carotArray)
+                val carotset = LineDataSet(Carot, "Carotenoids")
+
+                carotset.setDrawFilled(true)
+                carotset.setColor(Color.argb(0,255,102,0))
+                carotset.fillDrawable = carotgrad
+                dataSet.add(carotset)
+
+                val yAxes = ArrayList<Entry>().apply {
+                    add(Entry(400F, -1F))
+                    add(Entry(450F, v450))
+                    add(Entry(500F, v500))
+                    add(Entry(550F, v550))
+                    add(Entry(570F, v570))
+                    add(Entry(600F, v600))
+                    add(Entry(650F, v650))
+                    add(Entry(700F, -1F))
+                }
+
+                val set1 = LineDataSet(yAxes, "Light Quality")
+                set1.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
+                set1.setDrawFilled(true)
+
+                val rainArray: IntArray = intArrayOf(Color.MAGENTA, Color.argb(255,127,0,255), Color.BLUE, Color.GREEN, Color.YELLOW, Color.argb(255,255,170,0), Color.RED, Color.argb(255,170,0,0))
+                val rainbow = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,rainArray)
+                set1.fillDrawable = rainbow
+                set1.color = Color.argb(255,0,0,0)
+
+                dataSet.add(set1)
+
+                val cdata = CombinedData()
+
+                val data = CombinedData()
+
+                data.setData(generateLineData())
+
+                LightChart.data = LineData(data)
+                LightChart.invalidate()
+                progbar.visibility = View.INVISIBLE

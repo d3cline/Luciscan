@@ -41,7 +41,6 @@ import android.widget.TextView
 import android.widget.Toast
 
 import android.content.ContentValues.TAG
-import android.support.v4.app.ActivityCompat
 import java.util.*
 
 /**

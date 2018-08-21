@@ -30,7 +30,6 @@ import android.location.*
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.IBinder
-import android.support.v4.content.ContextCompat
 import android.text.InputFilter
 import android.text.TextUtils
 import android.util.Log
@@ -44,6 +43,7 @@ import android.widget.*
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.CombinedData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -131,6 +131,7 @@ class DeviceControlActivity : Activity() {
             val action = intent.action
             when (action) {
                 BluetoothLeService.ACTION_GATT_CONNECTED -> {
+                    println("CONNECT")
                     mConnected = true
                     updateConnectionState(R.string.connected)
                     invalidateOptionsMenu()
@@ -149,6 +150,8 @@ class DeviceControlActivity : Activity() {
                     displayGattServices(mBluetoothLeService!!.supportedGattServices)
 
                 BluetoothLeService.ACTION_DATA_AVAILABLE -> {
+                    println("AVAILABE")
+
                     displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA))
                 }
             }
@@ -189,9 +192,11 @@ class DeviceControlActivity : Activity() {
 
 
     override fun onResume() {
+        println("RESUME")
         super.onResume()
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter())
         if (mBluetoothLeService != null) {
+            println("NULL")
             val result = mBluetoothLeService!!.connect(mDeviceAddress)
             Log.d(TAG, "Connect request result=" + result)
         }
@@ -199,15 +204,12 @@ class DeviceControlActivity : Activity() {
 
     override fun onPause() {
         super.onPause()
-        onBackPressed()
-        /*
         unregisterReceiver(mGattUpdateReceiver)
         try {
             fixedRateTimer.cancel()
         }catch(v: UninitializedPropertyAccessException){
             //print(v)
         }
-        */
     }
 
     override fun onDestroy() {
@@ -266,7 +268,7 @@ class DeviceControlActivity : Activity() {
     val progbar = findViewById<ProgressBar>(R.id.progressBar)
     progbar.visibility = View.VISIBLE
         if (data != null) {
-            //println(data)
+            println(data)
             try {
                 val o = data.split(":")
                 //119.708/nm=Watt/Mol 119.708/500=1/x
@@ -328,12 +330,15 @@ class DeviceControlActivity : Activity() {
                         }
                     }
 
-                val ppfdv = findViewById<TextView>(R.id.ppfd_mol)
-                ppfdv.text = String.format("%,.2f",(VioletMol+BlueMol+GreenMol+OrangeMol+RedMol)  ) + " μMole/m²"
 
-                val LightChart = findViewById<CombinedChart>(R.id.light_chart)
-                val dataSet = ArrayList<ILineDataSet>()
-                val left = LightChart.axisLeft
+                val lightChart = findViewById<CombinedChart>(R.id.light_chart)
+                lightChart.description.isEnabled = false
+                lightChart.setBackgroundColor(Color.WHITE)
+                lightChart.setDrawGridBackground(false)
+                lightChart.setDrawBarShadow(false)
+
+                val left = lightChart.axisLeft;
+
                 left.textSize = 12f
                 left.axisMinimum = 0f
                 left.axisMaximum = 10f
@@ -348,16 +353,13 @@ class DeviceControlActivity : Activity() {
                     left.axisMaximum = 700f
                 }
 
-                LightChart.axisRight.setEnabled(false)
-                LightChart.setScaleEnabled(false)
-                LightChart.setTouchEnabled(false)
+                lightChart.axisRight.setEnabled(false)
+                lightChart.setScaleEnabled(false)
+                lightChart.setTouchEnabled(false)
 
                 val description = Description()
                 description.setText("")
-                LightChart.setDescription(description)
-
-                val l = LightChart.getLegend()
-                l.setEnabled(false)
+                lightChart.setDescription(description)
 
                 val ChlA = ArrayList<Entry>()
                 ChlA.add(Entry(428.toFloat(), 1001.toFloat()))
@@ -372,6 +374,9 @@ class DeviceControlActivity : Activity() {
                 chlaset.setDrawFilled(true)
                 chlaset.setColor(Color.argb(0,0,99,0))
                 chlaset.fillDrawable = chlgrad
+
+                val dataSet = ArrayList<ILineDataSet>()
+
                 dataSet.add(chlaset)
 
                 val Carot = ArrayList<Entry>()
@@ -408,16 +413,28 @@ class DeviceControlActivity : Activity() {
                 set1.fillDrawable = rainbow
                 set1.color = Color.argb(255,0,0,0)
 
-                dataSet.add(set1)
+
+                val DO = arrayOf(CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.LINE)
+                lightChart.drawOrder = DO
+
+                val l = lightChart.legend
+                l.isWordWrapEnabled = true
+                l.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
 
                 val cdata = CombinedData()
 
-                LightChart.data = LineData(dataSet)
-                LightChart.invalidate()
+                val ldata = LineData()
+                ldata.addDataSet(set1)
+
+                cdata.setData(ldata)
+
+                lightChart.data = cdata
+                lightChart.invalidate()
+
                 progbar.visibility = View.INVISIBLE
 
             }catch(e: NullPointerException){
-                //println(e)
+                println(e)
             }
         }
     }
@@ -466,7 +483,6 @@ class DeviceControlActivity : Activity() {
                         //println(uuid)
                         //println("Not Luci")
                         // ignore arduino UUIDs too
-
                     }
                 }
 
@@ -500,8 +516,6 @@ class DeviceControlActivity : Activity() {
 
     companion object {
         private val TAG = DeviceControlActivity::class.java.simpleName
-
-
        var EXTRAS_DEVICE_NAME = "DEVICE_NAME"
        var EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS"
 

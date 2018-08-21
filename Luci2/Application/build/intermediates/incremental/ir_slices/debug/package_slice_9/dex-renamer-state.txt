@@ -1,4 +1,4 @@
-#Wed Aug 15 12:17:44 MDT 2018
-base.0=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\9
+#Mon Aug 20 22:48:20 MDT 2018
+base.0=C\:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci2\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\10
 path.0=classes.dex
 renamed.0=classes.dex

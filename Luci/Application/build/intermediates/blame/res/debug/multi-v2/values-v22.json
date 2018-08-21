@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Luci\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
+            "outputFile": "C:\\Users\\d3\\Documents\\GitHub\\Luciscan\\Luci\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\d3\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\42d2009f3fb5c81165cc259910d96439\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\d3\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\b67adb2e59c4fc51770223c77fd136bc\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",
