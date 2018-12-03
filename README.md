@@ -1,0 +1,2 @@
+# Luciscan
+Luciscan BLE Spectrometer 
